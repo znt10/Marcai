@@ -19,6 +19,16 @@ O barbeiro abre o painel e vê o dia dele. O dono vê a casa inteira.
 
 </div>
 
+> [!TIP]
+> ### 🔑 Acesso de teste
+>
+> | | |
+> |---|---|
+> | **Número** | `1191112222` |
+> | **Senha** | `teste-12345` |
+>
+> Conta de demonstração, com dados descartáveis.
+
 ---
 
 ## Em resumo
