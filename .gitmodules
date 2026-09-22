@@ -1,7 +1,7 @@
 [submodule "backend"]
 	path = backend
 	url = https://github.com/znt10/Marcai-back
-	branch = master
+	branch = main
 [submodule "frontend"]
 	path = frontend
 	url = https://github.com/znt10/Marcai-front
