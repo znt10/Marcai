@@ -25,7 +25,7 @@ O barbeiro abre o painel e vê o dia dele. O dono vê a casa inteira.
 >
 > | | |
 > |---|---|
-> | **Número** | `1191112222` |
+> | **Número** | `11911112222` |
 > | **Senha** | `teste-12345` |
 >
 > Conta de demonstração, com dados descartáveis.
