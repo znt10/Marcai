@@ -1,0 +1,42 @@
+# Publica o site (www.usemarcai.online) no GitHub Pages.
+#
+# Existe porque o build automático do Pages ("Deploy from a branch") clona os
+# submódulos, e o Marcai-back e o Marcai-front são privados: o clone falha
+# com "Repository not found" e o site não atualiza. Aqui o checkout ignora
+# os submódulos e só os arquivos do site vão para o ar.
+name: Site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: false
+      - name: Junta os arquivos do site
+        run: |
+          mkdir _site
+          cp -r index.html CNAME logo.svg marca.png landing _site/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deploy
+        uses: actions/deploy-pages@v4
