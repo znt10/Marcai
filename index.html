@@ -217,13 +217,29 @@
   .app-pergunta b{font:800 16px/1.2 "Poppins",sans-serif;color:#febc1a;}
   .app-pergunta .app-botao{margin-top:0;}
   .app-pergunta small{color:var(--sub);font-size:11px;}
+  /* O formulário de interesse */
+  [hidden]{display:none!important;}
+  .formulario{margin:40px auto 0;max-width:440px;background:var(--cartao);border:1px solid rgba(223,167,58,.35);border-radius:24px;padding:28px;display:grid;gap:16px;}
+  .formulario label{display:grid;gap:8px;font:600 14px "Poppins",sans-serif;}
+  .formulario input{font:400 16px "Archivo",sans-serif;color:var(--tinta);background:#14100d;border:1px solid var(--linha);border-radius:12px;padding:14px 16px;outline:none;}
+  .formulario input:focus{border-color:var(--ouro);}
+  .formulario input::placeholder{color:rgba(244,239,228,.35);}
+  .formulario .botao{width:100%;border:0;cursor:pointer;margin-top:4px;}
+  .formulario .botao:disabled{opacity:.6;cursor:wait;}
+  .isca{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;}
+  .aviso{min-height:20px;color:var(--ouro);font-size:14px;text-align:center;}
+  .miudo{font-size:12px;color:var(--sub);text-align:center;}
+  .enviado{margin:40px auto 0;max-width:440px;text-align:center;background:var(--cartao);border:1px solid rgba(223,167,58,.35);border-radius:24px;padding:36px 28px;}
+  .enviado .icone.grande{margin:0 auto 16px;}
+  .enviado h3{font:800 26px "Poppins",sans-serif;}
+  .enviado p{margin-top:8px;color:var(--sub);}
 </style>
 </head>
 <body>
 
 <header class="caixa topo">
   <img src="landing/logo-barbearia.svg" alt="Marcaí" />
-  <a class="t conversa" href="#preco">Falar com a gente</a>
+  <a class="t conversa" href="#comecar">Falar com a gente</a>
 </header>
 
 <main>
@@ -233,7 +249,7 @@
       <h1>Acordou,<br /><span class="ouro">abriu a agenda.</span></h1>
       <p class="sub">Seu cliente marca o corte sozinho pelo link. Você só corta.</p>
       <div class="acoes">
-        <a class="botao conversa" href="#preco">Quero o Marcaí</a>
+        <a class="botao conversa" href="#comecar">Quero o Marcaí</a>
         <a class="t" href="#como">Como funciona ↓</a>
       </div>
     </div>
@@ -457,7 +473,36 @@
         <li>Quanto cada barbeiro fez no mês</li>
         <li>Sua logo e suas cores</li>
       </ul>
-      <a class="botao conversa" href="#preco">Quero o Marcaí</a>
+      <a class="botao conversa" href="#comecar">Quero o Marcaí</a>
+    </div>
+  </section>
+  <!-- O formulário: vira um WhatsApp para o José (servidor.mjs, /interesse).
+       Sem resposta automática para quem preenche: o José puxa a conversa. -->
+  <section id="comecar" class="escura">
+    <div class="caixa bloco">
+      <p class="sobre">Sua nova rotina começa aqui</p>
+      <h2 class="centro">Quer o Marcaí na sua barbearia?</h2>
+      <p class="sub centro estreito">Deixa seu nome e WhatsApp. A gente te chama e configura tudo junto com você.</p>
+      <form class="formulario" id="formulario" method="post" action="/interesse" novalidate>
+        <label>Seu nome
+          <input name="nome" required minlength="2" maxlength="60" autocomplete="name" placeholder="Como você se chama?" />
+        </label>
+        <label>WhatsApp com DDD
+          <input name="whatsapp" required inputmode="tel" autocomplete="tel" maxlength="20" placeholder="(11) 98765-4321" />
+        </label>
+        <!-- Isca para robô: escondida de quem enxerga e de leitor de tela. -->
+        <label class="isca" aria-hidden="true">Site
+          <input name="site" tabindex="-1" autocomplete="off" />
+        </label>
+        <button class="botao" type="submit">Quero que me chamem</button>
+        <p class="aviso" id="aviso" role="status" aria-live="polite"></p>
+        <p class="miudo">Seu número só é usado para falar com você sobre o Marcaí.</p>
+      </form>
+      <div class="enviado" id="enviado" hidden>
+        <span class="icone grande"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+        <h3>Recebemos!</h3>
+        <p>Já já a gente te chama no WhatsApp.</p>
+      </div>
     </div>
   </section>
 </main>
@@ -466,20 +511,45 @@
   <div class="caixa rodape">
     <img src="landing/logo-barbearia.svg" alt="Marcaí" />
     <span>© 2026 Marcaí. Sua barbearia no controle.</span>
-    <a class="conversa" href="#preco">Falar no WhatsApp</a>
+    <a class="conversa" href="#comecar">Quero o Marcaí</a>
   </div>
 </footer>
 
 <script>
-  // Número de vendas, só dígitos com DDI (ex.: "5511999998888"). Vazio, os
-  // botões descem até o preço em vez de abrir uma conversa sem destino.
-  var WHATS = '';
-  if (WHATS) {
-    var link = 'https://wa.me/' + WHATS + '?text=' + encodeURIComponent('Oi! Vi o site e quero saber do Marcaí.');
-    document.querySelectorAll('a.conversa').forEach(function (a) {
-      a.href = link; a.target = '_blank'; a.rel = 'noreferrer';
+  // O formulário de interesse. Com JavaScript, posta sem sair da página;
+  // sem ele, o servidor devolve para cá com ?enviado=1 ou ?erro=.
+  (function () {
+    var form = document.getElementById('formulario');
+    var aviso = document.getElementById('aviso');
+    var enviado = document.getElementById('enviado');
+    function pronto() { form.hidden = true; enviado.hidden = false; }
+    var q = new URLSearchParams(location.search);
+    if (q.get('enviado') === '1') pronto();
+    else if (q.get('erro')) aviso.textContent = q.get('erro');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var nome = form.nome.value.trim();
+      var digitos = form.whatsapp.value.replace(/\D/g, '');
+      if (nome.length < 2) { aviso.textContent = 'Confere o seu nome.'; form.nome.focus(); return; }
+      if (digitos.length < 10 || digitos.length > 13) { aviso.textContent = 'Confere o WhatsApp, com DDD.'; form.whatsapp.focus(); return; }
+      var botao = form.querySelector('button');
+      botao.disabled = true;
+      aviso.textContent = 'Enviando...';
+      fetch('/interesse', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' },
+        body: new URLSearchParams(new FormData(form)).toString()
+      })
+        .then(function (r) { return r.json().catch(function () { return { ok: false }; }); })
+        .then(function (d) {
+          if (d.ok) return pronto();
+          aviso.textContent = d.erro || 'Não deu para enviar agora. Tenta de novo em instantes.';
+        })
+        .catch(function () { aviso.textContent = 'Sem conexão. Tenta de novo.'; })
+        .then(function () { botao.disabled = false; });
     });
-  }
+  })();
 
   // O tutorial: setas e pontos andam pelas quatro telas.
   (function () {
