@@ -161,35 +161,49 @@
   .pontos span{width:8px;height:8px;border-radius:50%;background:rgba(244,239,228,.25);transition:all .2s;}
   .pontos span.on{background:var(--ouro);width:22px;border-radius:4px;}
 
-  /* A tela do app, desenhada: mesma cara escura e dourada da página da barbearia */
-  .app{height:520px;background:#0e0c0a;border:1px solid var(--linha);border-radius:32px;padding:22px 18px;display:flex;flex-direction:column;gap:10px;overflow:hidden;font-size:13px;}
-  .app-topo{display:flex;align-items:center;gap:10px;font:700 16px "Poppins",sans-serif;margin-bottom:4px;}
-  .app-topo img{height:24px;}
-  .app-cartao{background:#181512;border:1px solid var(--linha);border-radius:16px;padding:18px;}
+  /* A tela do app, copiada das telas reais do cliente (teste.usemarcai.online, 17/11/2026) */
+  .app{height:540px;background:#0e0c0a;border:1px solid var(--linha);border-radius:32px;padding:20px 16px;display:flex;flex-direction:column;gap:10px;overflow:hidden;font-size:13px;}
+  .app-topo{display:flex;align-items:center;gap:10px;font:700 16px "Poppins",sans-serif;}
+  .app-topo img,.app-marca img{height:22px;}
+  .app-marca{display:flex;align-items:center;gap:8px;font:700 15px "Poppins",sans-serif;padding-bottom:12px;border-bottom:1px solid var(--linha);}
+  .app-marca span{margin-left:4px;padding-left:10px;border-left:1px solid var(--linha);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--sub);}
+  .app-cartao{background:#181512;border:1px solid var(--linha);border-radius:14px;padding:16px;}
   .centro-col{display:flex;flex-direction:column;align-items:center;gap:8px;}
   .app-cartao small{color:var(--sub);font-size:11px;}
-  .app-logo{height:58px;}
-  .app-rotulo{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--sub);margin-top:4px;}
-  .app-barbeiros{display:flex;gap:8px;}
-  .app-barbeiros span{padding:8px 16px;border-radius:10px;border:1px solid var(--linha);}
-  .app-barbeiros .ativo{border-color:var(--ouro);color:var(--ouro);}
-  .app-botao{margin-top:auto;background:#febc1a;color:#1b1612;border-radius:12px;padding:12px;text-align:center;font:700 13px "Poppins",sans-serif;text-transform:uppercase;letter-spacing:.04em;}
-  .app-servico{display:flex;align-items:baseline;gap:8px;padding:6px 0;border-bottom:1px solid var(--linha);}
+  .foto{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;border:1.5px dashed rgba(223,167,58,.6);
+    color:var(--ouro);font:600 10px "Poppins",sans-serif;text-align:center;background:rgba(223,167,58,.06);}
+  .foto.logo{width:84px;height:84px;font-size:11px;}
+  .app-rotulo{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--sub);align-self:flex-start;margin-top:6px;}
+  .app-barbeiro{align-self:flex-start;display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 14px;border:2px solid #febc1a;border-radius:8px;box-shadow:3px 3px 0 #b8860b;}
+  .app-barbeiro .foto{width:56px;height:56px;}
+  .app-barbeiro b{font-weight:500;}
+  .app-botao{margin-top:auto;background:#febc1a;color:#1b1612;border-radius:12px;padding:13px;text-align:center;font:700 14px "Poppins",sans-serif;}
+  .app-botao.grande{margin-top:4px;text-transform:uppercase;box-shadow:3px 3px 0 #b8860b;}
+  .app-servico{display:flex;align-items:baseline;gap:8px;padding:8px 0;border-top:1px solid var(--linha);}
+  .app-servico small{color:var(--sub);font-size:10px;}
   .app-servico i{flex:1;border-bottom:1px dotted rgba(244,239,228,.2);}
-  .app-servico em,.app-opcao em{font-style:normal;font-family:"Space Mono",monospace;color:#febc1a;}
-  .app-opcao{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border:1px solid var(--linha);border-radius:12px;}
-  .app-opcao small{display:block;color:var(--sub);font-size:11px;}
-  .app-opcao.marcada{border-color:#febc1a;background:rgba(254,188,26,.08);}
-  .app-mes{font:600 14px "Poppins",sans-serif;margin-top:6px;}
-  .app-semana,.app-dias{display:grid;grid-template-columns:repeat(7,1fr);text-align:center;gap:6px;}
-  .app-semana{color:var(--sub);font-size:11px;}
-  .app-dias span{padding:9px 0;border-radius:10px;border:1px solid var(--linha);}
-  .app-dias .fora,.app-horas .fora{border-color:transparent;color:rgba(244,239,228,.22);}
-  .app-dias .marcada,.app-horas .marcada{background:#febc1a;border-color:#febc1a;color:#1b1612;font-weight:700;}
+  .app-servico em{font-style:normal;font-family:"Space Mono",monospace;color:#febc1a;}
+  .app-etapa{display:flex;gap:8px;align-items:baseline;font:700 14px "Poppins",sans-serif;margin-top:4px;}
+  .app-etapa .mono{color:#febc1a;font-size:12px;}
+  .app-etapa.apagada{opacity:.45;}
+  .app-dica{position:relative;background:#febc1a;color:#1b1612;border-radius:12px;padding:10px 12px;font:700 14px "Poppins",sans-serif;}
+  .app-dica::after{content:"";position:absolute;left:28px;bottom:-7px;border:7px solid transparent;border-bottom:0;border-top-color:#febc1a;}
+  .app-chips{display:flex;flex-wrap:wrap;gap:6px;padding:6px;border:2px solid rgba(254,188,26,.7);border-radius:14px;}
+  .app-chips span{padding:8px 10px;border:1px solid var(--linha);border-radius:10px;background:#161310;font-size:11px;color:var(--sub);}
+  .app-chips b{display:block;font:600 12px "Poppins",sans-serif;color:var(--tinta);}
+  .app-chips .marcada{border-color:#febc1a;color:#febc1a;}
+  .app-dias2{display:flex;gap:6px;}
+  .app-dias2 span{padding:8px 10px;border-radius:999px;border:1px solid var(--linha);font:600 11px "Poppins",sans-serif;color:var(--sub);}
+  .app-dias2 .marcada{background:#febc1a;border-color:#febc1a;color:#1b1612;}
+  .app-horas{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:6px;border:2px solid rgba(254,188,26,.7);border-radius:14px;}
+  .app-horas span{padding:8px 0;text-align:center;border-radius:10px;border:1px solid var(--linha);background:#161310;font-size:12px;}
+  .app-horas .marcada{background:#febc1a;border-color:#febc1a;color:#1b1612;font-weight:700;}
   .app-nota{color:var(--sub);font-size:11px;text-align:center;}
-  .app-horas{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
-  .app-horas span{padding:9px 0;text-align:center;border-radius:10px;border:1px solid var(--linha);}
+  .app-nota.esq{text-align:left;}
+  .app-outro{color:#febc1a;font:600 12px "Poppins",sans-serif;}
+  .app-legenda{color:var(--sub);font:600 12px "Poppins",sans-serif;margin-top:4px;}
   .app-campo{padding:12px 14px;border:1px solid var(--linha);border-radius:12px;background:#181512;}
+  .seta-dir{display:flex;justify-content:space-between;}
 </style>
 </head>
 <body>
@@ -276,62 +290,66 @@
           <div class="app">
             <div class="app-topo"><img src="landing/poste.svg" alt="" />Barbearia do Zé</div>
             <div class="app-cartao centro-col">
-              <img class="app-logo" src="landing/poste.svg" alt="" />
+              <span class="foto logo">Sua logo</span>
               <small>Rua das Flores, 120</small>
+              <p class="app-rotulo esq">Barbeiros</p>
+              <div class="app-barbeiro"><span class="foto">Sua foto</span><b>Zé</b></div>
             </div>
-            <p class="app-rotulo">Barbeiros</p>
-            <div class="app-barbeiros"><span class="ativo">Zé</span><span>Léo</span></div>
-            <div class="app-botao">Marcar horário</div>
-            <p class="app-rotulo">Serviços</p>
-            <div class="app-servico"><span>Corte</span><i></i><em>R$ 35</em></div>
-            <div class="app-servico"><span>Barba</span><i></i><em>R$ 25</em></div>
-            <div class="app-servico"><span>Corte + barba</span><i></i><em>R$ 55</em></div>
+            <div class="app-botao grande">Marcar horário</div>
+            <p class="app-nota">ou chama no zap: (11) 98765-4321</p>
+            <div class="app-servico"><span>Corte <small class="mono">30min</small></span><i></i><em>R$ 35,00</em></div>
+            <div class="app-servico"><span>Barba <small class="mono">30min</small></span><i></i><em>R$ 25,00</em></div>
           </div>
           <figcaption><b>1</b> Sua barbearia</figcaption>
         </figure>
 
         <figure class="passo">
           <div class="app">
-            <div class="app-topo"><img src="landing/poste.svg" alt="" />Escolha o serviço</div>
-            <div class="app-opcao"><span>Corte<small>30 min</small></span><em>R$ 35</em></div>
-            <div class="app-opcao"><span>Barba<small>30 min</small></span><em>R$ 25</em></div>
-            <div class="app-opcao marcada"><span>Corte + barba<small>45 min</small></span><em>R$ 55</em></div>
-            <div class="app-opcao"><span>Pezinho<small>15 min</small></span><em>R$ 15</em></div>
-            <div class="app-opcao"><span>Sobrancelha<small>10 min</small></span><em>R$ 10</em></div>
-            <div class="app-botao">Continuar</div>
+            <div class="app-marca"><img src="landing/poste.svg" alt="" />Marcaí<span>Barbearia do Zé</span></div>
+            <p class="app-etapa"><span class="mono">01</span>Serviço</p>
+            <div class="app-dica">👇 Agora escolha o serviço</div>
+            <div class="app-chips">
+              <span><b>Corte</b>30min · R$ 35,00</span>
+              <span><b>Barba</b>30min · R$ 25,00</span>
+              <span class="marcada"><b>Corte e barba</b>45min · R$ 55,00</span>
+              <span><b>Pezinho</b>15min · R$ 15,00</span>
+              <span><b>Sobrancelha</b>15min · R$ 10,00</span>
+            </div>
+            <p class="app-etapa apagada"><span class="mono">02</span>Horário</p>
+            <p class="app-etapa apagada"><span class="mono">03</span>Seus dados</p>
           </div>
           <figcaption><b>2</b> Escolha do serviço</figcaption>
         </figure>
 
         <figure class="passo">
           <div class="app">
-            <div class="app-topo"><img src="landing/poste.svg" alt="" />Escolha o dia</div>
-            <p class="app-mes">Novembro</p>
-            <div class="app-semana mono"><span>D</span><span>S</span><span>T</span><span>Q</span><span>Q</span><span>S</span><span>S</span></div>
-            <div class="app-dias mono">
-              <span class="fora">15</span><span>16</span><span>17</span><span>18</span><span class="marcada">19</span><span>20</span><span>21</span>
-              <span class="fora">22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span><span>28</span>
+            <div class="app-marca"><img src="landing/poste.svg" alt="" />Marcaí<span>Barbearia do Zé</span></div>
+            <p class="app-etapa"><span class="mono">02</span>Horário</p>
+            <div class="app-dias2"><span class="marcada">Hoje · qui 19 nov</span><span>Amanhã · sex 20</span></div>
+            <div class="app-dica">👇 Escolha um horário livre</div>
+            <div class="app-horas mono">
+              <span>13:30</span><span>14:00</span><span class="marcada">14:30</span><span>15:00</span>
+              <span>15:30</span><span>16:00</span><span>16:30</span><span>17:00</span>
             </div>
-            <p class="app-nota">Domingo fechado</p>
-            <div class="app-botao">Ver horários</div>
+            <p class="app-nota esq">só aparece o que está livre</p>
+            <p class="app-outro">👇 Aqui você escolhe qualquer outro dia do mês</p>
+            <div class="app-campo seta-dir">Ver outro dia no calendário <span>›</span></div>
           </div>
-          <figcaption><b>3</b> Escolha da data</figcaption>
+          <figcaption><b>3</b> Escolha do horário</figcaption>
         </figure>
 
         <figure class="passo">
           <div class="app">
-            <div class="app-topo"><img src="landing/poste.svg" alt="" />Quinta, 19/11</div>
-            <div class="app-horas mono">
-              <span>09:00</span><span class="fora">09:30</span><span>10:00</span>
-              <span class="fora">13:00</span><span class="marcada">14:30</span><span>15:00</span>
-            </div>
-            <p class="app-rotulo">Seus dados</p>
+            <div class="app-marca"><img src="landing/poste.svg" alt="" />Marcaí<span>Barbearia do Zé</span></div>
+            <p class="app-etapa"><span class="mono">03</span>Seus dados</p>
+            <p class="app-legenda">Nome</p>
             <div class="app-campo">Rafael Souza</div>
-            <div class="app-campo mono">(11) 98765-4321</div>
-            <div class="app-botao">Confirmar 14:30</div>
-            <p class="app-nota">Você recebe a confirmação no WhatsApp</p>
+            <p class="app-legenda">WhatsApp</p>
+            <div class="app-campo">(11) 98765-4321</div>
+            <div class="app-botao">Confirmar horário</div>
+            <p class="app-nota">Depois de confirmar, você escolhe receber o lembrete no WhatsApp</p>
           </div>
-          <figcaption><b>4</b> Horário e dados</figcaption>
+          <figcaption><b>4</b> Seus dados</figcaption>
         </figure>
 
       </div>
