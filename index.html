@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Marcaí · Agenda online para quem trabalha com hora marcada</title>
-<meta name="description" content="Seu cliente marca sozinho pelo link e recebe o lembrete no WhatsApp. Você só atende." />
+<title>Marcaí · Agenda online para barbearias</title>
+<meta name="description" content="Seu cliente marca o corte sozinho pelo link e recebe o lembrete no WhatsApp. Você só corta." />
 <meta property="og:title" content="Marcaí" />
-<meta property="og:description" content="Seu cliente marca sozinho pelo link. Você só atende." />
+<meta property="og:description" content="Seu cliente marca o corte sozinho pelo link. Você só corta." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://www.usemarcai.online" />
 <meta name="theme-color" content="#ffffff" />
@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;800&family=Archivo:wght@400;500&family=Space+Mono&display=swap" rel="stylesheet" />
 <style>
-  /* Preto e branco de propósito: é a vitrine do PRODUTO, não de uma casa.
+  /* Preto e branco de propósito, com foco em barbearia (17/11/2026).
      As cores aparecem só nas paletas, que são das casas. */
   :root{
     --tinta:#111;
@@ -80,13 +80,6 @@
   .confirmar{margin-top:24px;border-radius:16px;background:var(--tinta);color:#fff;padding:12px;text-align:center;font-size:14px;font-weight:600;}
   .tela .nota{margin-top:12px;text-align:center;font-size:11px;color:rgba(17,17,17,.45);}
 
-  /* Para quem */
-  .tipos{border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);}
-  .tipos ul{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:20px 40px;padding-top:32px;padding-bottom:32px;}
-  @media(min-width:768px){.tipos ul{justify-content:space-between;}}
-  .tipos li{display:flex;align-items:center;gap:10px;font:500 15px "Poppins",sans-serif;}
-  .tipos img{width:28px;height:28px;}
-
   /* Seções */
   .escura{background:var(--tinta);color:#fff;}
   .bloco{padding-top:80px;padding-bottom:80px;}
@@ -145,7 +138,7 @@
   <section class="caixa hero">
     <div>
       <h1>Acordou,<br />abriu a agenda.</h1>
-      <p class="sub">Seu cliente marca sozinho pelo link. Você só atende.</p>
+      <p class="sub">Seu cliente marca o corte sozinho pelo link. Você só corta.</p>
       <div class="acoes">
         <a class="botao conversa" href="#preco">Quero o Marcaí</a>
         <a class="t" href="#como">Como funciona ↓</a>
@@ -155,8 +148,8 @@
     <div class="celular" aria-hidden="true">
       <div class="tela">
         <div class="casa">
-          <span class="inicial t">B</span>
-          <div><b>Studio Bela</b><small>Unha em gel · 1h</small></div>
+          <span class="inicial t">Z</span>
+          <div><b>Barbearia do Zé</b><small>Corte + barba · 45 min</small></div>
         </div>
         <p class="dia t">Quinta, 20 de novembro</p>
         <div class="horas mono">
@@ -170,30 +163,21 @@
     </div>
   </section>
 
-  <section class="tipos">
-    <ul class="caixa">
-      <li><img src="landing/barbearia.svg" alt="" />Barbearia</li>
-      <li><img src="landing/manicure.svg" alt="" />Manicure</li>
-      <li><img src="landing/sobrancelha.svg" alt="" />Estética</li>
-      <li><img src="landing/cabeleireira.svg" alt="" />Cabeleireira</li>
-      <li><img src="landing/maquiagem.svg" alt="" />Maquiagem</li>
-    </ul>
-  </section>
 
   <section id="como" class="escura">
     <div class="caixa bloco">
       <h2>Três passos. Só.</h2>
       <ol class="passos">
-        <li><span class="mono">01</span><b>Você manda o link</b><p>Cada casa tem o seu endereço.</p></li>
-        <li><span class="mono">02</span><b>O cliente marca</b><p>Serviço, profissional e horário. Sem baixar app.</p></li>
-        <li><span class="mono">03</span><b>O WhatsApp lembra</b><p>Uma hora antes. Menos falta.</p></li>
+        <li><span class="mono">01</span><b>Você manda o link</b><p>Cada barbearia tem o seu endereço.</p></li>
+        <li><span class="mono">02</span><b>O cliente marca</b><p>Corte, barbeiro e horário. Sem baixar app.</p></li>
+        <li><span class="mono">03</span><b>O WhatsApp lembra</b><p>Uma hora antes. Menos cadeira vazia.</p></li>
       </ol>
     </div>
   </section>
 
   <section class="caixa bloco cara">
     <div>
-      <h2>Com a sua cara.</h2>
+      <h2>A cara da sua barbearia.</h2>
       <p class="sub">Sua logo e suas cores na página que o cliente abre.</p>
     </div>
     <!-- As paletas do app (Marcai-front/src/lib/paletas.ts): fundo e destaque. -->
@@ -209,13 +193,13 @@
     <div class="caixa bloco">
       <h2>Um preço. Sem surpresa.</h2>
       <div class="cartao">
-        <p class="rotulo">Até 2 profissionais</p>
+        <p class="rotulo">Até 2 barbeiros</p>
         <p class="valor"><b>R$ 60</b><span>/mês</span></p>
-        <p class="mais">+ R$ 20 por profissional a mais</p>
+        <p class="mais">+ R$ 20 por barbeiro a mais</p>
         <ul class="inclui">
           <li>Agenda online 24 horas</li>
           <li>Lembrete no WhatsApp</li>
-          <li>Resumo do mês por serviço</li>
+          <li>Quanto cada barbeiro fez no mês</li>
           <li>Sua logo e suas cores</li>
         </ul>
         <a class="botao conversa" href="#preco">Quero o Marcaí</a>
@@ -226,6 +210,7 @@
   <section class="caixa bloco">
     <dl class="duvidas" style="margin:0 auto">
       <div><dt>Meu cliente precisa baixar aplicativo?</dt><dd>Não. Ele abre o link e marca em menos de um minuto.</dd></div>
+      <div><dt>Cada barbeiro vê a própria agenda?</dt><dd>Sim. Cada um vê o seu dia, e o dono vê a barbearia inteira.</dd></div>
       <div><dt>Não sou bom com tecnologia.</dt><dd>A gente cadastra tudo junto com você.</dd></div>
     </dl>
   </section>
@@ -234,7 +219,7 @@
 <footer class="escura">
   <div class="caixa bloco fecho">
     <img src="landing/marcai-horizontal-branco.svg" alt="Marcaí" />
-    <p>Sua agenda trabalhando enquanto você atende.</p>
+    <p>Sua agenda trabalhando enquanto você corta.</p>
     <a class="botao claro conversa" href="#preco">Falar no WhatsApp</a>
   </div>
   <div class="caixa rodape">
