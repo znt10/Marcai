@@ -204,6 +204,19 @@
   .app-legenda{color:var(--sub);font:600 12px "Poppins",sans-serif;margin-top:4px;}
   .app-campo{padding:12px 14px;border:1px solid var(--linha);border-radius:12px;background:#181512;}
   .seta-dir{display:flex;justify-content:space-between;}
+  .app-titulo{font:800 22px/1.15 "Poppins",sans-serif;margin-top:4px;}
+  /* O cupom: a hora enorme, a serrilha e o serviço, como em Confirmado.tsx */
+  .cupom{background:#181512;border:1px solid var(--linha);border-radius:14px;padding:16px;box-shadow:3px 3px 0 #b8860b;}
+  .cupom .app-rotulo{margin:0;text-transform:none;letter-spacing:.02em;font-size:11px;}
+  .cupom-hora{font-size:60px;font-weight:700;line-height:1;letter-spacing:-.02em;color:#febc1a;margin-top:6px;}
+  .serrilha{position:relative;margin:16px -16px 12px;border-top:1px dashed var(--linha);}
+  .serrilha::before,.serrilha::after{content:"";position:absolute;top:-8px;width:16px;height:16px;border-radius:50%;background:#0e0c0a;}
+  .serrilha::before{left:-8px;} .serrilha::after{right:-8px;}
+  .cupom small{color:var(--sub);font-size:11px;}
+  .app-pergunta{background:#181512;border:1px solid var(--linha);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px;box-shadow:3px 3px 0 #b8860b;}
+  .app-pergunta b{font:800 16px/1.2 "Poppins",sans-serif;color:#febc1a;}
+  .app-pergunta .app-botao{margin-top:0;}
+  .app-pergunta small{color:var(--sub);font-size:11px;}
 </style>
 </head>
 <body>
@@ -352,10 +365,30 @@
           <figcaption><b>4</b> Seus dados</figcaption>
         </figure>
 
+        <figure class="passo">
+          <div class="app">
+            <div class="app-topo"><img src="landing/poste.svg" alt="" />Barbearia do Zé</div>
+            <p class="app-titulo">Tá marcado, Rafael.</p>
+            <div class="cupom">
+              <p class="app-rotulo">quinta-feira, 19 de novembro</p>
+              <p class="cupom-hora mono">14:30</p>
+              <div class="serrilha"></div>
+              <p>corte e barba com Zé · R$ 55,00</p>
+              <small>Rua das Flores, 120</small>
+            </div>
+            <div class="app-pergunta">
+              <b>Quer receber a confirmação e o lembrete no WhatsApp?</b>
+              <div class="app-botao">Sim, quero no WhatsApp</div>
+              <small>Abre o WhatsApp com a mensagem pronta. É só enviar.</small>
+            </div>
+          </div>
+          <figcaption><b>5</b> Horário marcado</figcaption>
+        </figure>
+
       </div>
       <div class="controles">
         <button type="button" class="seta" id="antes" aria-label="Tela anterior">←</button>
-        <div class="pontos" id="pontos"><span class="on"></span><span></span><span></span><span></span></div>
+        <div class="pontos" id="pontos"><span class="on"></span><span></span><span></span><span></span><span></span></div>
         <button type="button" class="seta" id="depois" aria-label="Próxima tela">→</button>
       </div>
     </div>
